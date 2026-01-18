@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,17 +13,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zhang Fan - システムエンジニア",
-  description: "通信業界でシステム開発に従事するエンジニアのポートフォリオサイト",
+  title: "Zhang Fan - Systems Engineer",
+  description: "Portfolio site of a systems engineer working in the telecom industry",
 };
 
-export default function RootLayout({
+export default function EnLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

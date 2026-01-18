@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "通信業界でシステム開発に従事するエンジニアのポートフォリオサイト",
 };
 
-export default function RootLayout({
+export default function JaLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

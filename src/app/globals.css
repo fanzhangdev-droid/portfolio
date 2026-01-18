@@ -1,26 +1,312 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Clean & Readable Color System - Engineer-focused */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6B7280;
+  --accent: #4F6D8C;
+  --accent-hover: #3E5A75;
+  --border: #E5E7EB;
+  --border-light: #F3F4F6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography - Mobile First, Reading-focused */
+.prose-reading {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-primary);
+}
+
+/* Paragraphs with generous spacing */
+.prose-reading p {
+  margin-bottom: 1.75em; /* 16px * 1.75 = 28px */
+}
+
+.prose-reading p:last-child {
+  margin-bottom: 0;
+}
+
+/* Emphasized text blocks */
+.text-emphasis {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .text-emphasis {
+    font-size: 16px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Section Layout - One Screen One Theme */
+.section {
+  min-height: 100svh;
+  padding: 56px 0;
+  display: flex;
+  align-items: center;
+  scroll-margin-top: 96px;
+  position: relative;
 }
+
+@media (min-width: 768px) {
+  .section {
+    padding: 96px 0;
+  }
+}
+
+/* Section Banding - Alternating backgrounds */
+.section--alt {
+  background: #F7F3EA;
+}
+
+
+/* Hero Animations - Subtle Editorial Fade-up */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem); /* 8px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  animation: heroFadeUp 0.8s ease-out forwards;
+}
+
+.hero-roles {
+  animation: heroFadeUp 0.8s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.hero-description {
+  animation: heroFadeUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.hero-photo {
+  animation: heroFadeUp 0.9s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* ===== Hero magazine-style entrance + subtle 3D + shimmer ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .hero-animate * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes magazineIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.005);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* a tiny “settle” bounce, very subtle */
+@keyframes settle {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-1px); }
+  100% { transform: translateY(0); }
+}
+
+/* Subtle shimmer sweep across the text */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-140%); opacity: 0; }
+  10%  { opacity: 0.08; }
+  55%  { opacity: 0.12; }
+  100% { transform: translateX(140%); opacity: 0; }
+}
+
+/* 3D-ish text: light shadow stack (works on clean palette) */
+.hero-3d {
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.08),
+    0 2px 0 rgba(0,0,0,0.06),
+    0 6px 16px rgba(0,0,0,0.10);
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+}
+
+/* Slight “breathing” movement so it’s not static */
+@keyframes breathe3d {
+  0%   { transform: translateY(0) rotateX(0deg); }
+  50%  { transform: translateY(-1px) rotateX(1.2deg); }
+  100% { transform: translateY(0) rotateX(0deg); }
+}
+
+.hero-animate {
+  animation: magazineIn 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero-delay-1 { animation-delay: 80ms; }
+.hero-delay-2 { animation-delay: 160ms; }
+.hero-delay-3 { animation-delay: 240ms; }
+
+.hero-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title-wrap::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 60%;
+  height: 120%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.55),
+    transparent
+  );
+  mix-blend-mode: soft-light;
+  transform: translateX(-140%);
+  animation: shimmerSweep 2600ms ease-in-out infinite;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+/* Make shimmer even more subtle on bright backgrounds */
+.hero-title-wrap[data-shimmer="soft"]::after {
+  opacity: 0.35;
+}
+
+/* The title itself gently “breathes” */
+.hero-title-breathe {
+  animation: breathe3d 3400ms ease-in-out infinite;
+}
+
+/* Optional: a very subtle underline reveal */
+@keyframes underlineReveal {
+  0% { width: 0; opacity: 0; }
+  100% { width: 100%; opacity: 1; }
+}
+
+.hero-underline {
+  height: 1px;
+  background: rgba(0,0,0,0.18);
+  margin: 14px auto 0;
+  width: 0;
+  animation: underlineReveal 700ms ease-out both;
+  animation-delay: 280ms;
+}
+
+/* ===== Hero bottom floating triangle indicator ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-indicator {
+    animation: none !important;
+  }
+}
+
+@keyframes floatDown {
+  0%   { transform: translate(-50%, 0); opacity: 0.55; }
+  50%  { transform: translate(-50%, 8px); opacity: 0.85; }
+  100% { transform: translate(-50%, 0); opacity: 0.55; }
+}
+
+/* A hollow triangle (transparent inside) pointing down */
+.hero-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  width: 0;
+  height: 0;
+
+  /* Outer triangle */
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+ border-top: 18px solid rgba(79, 109, 140, 0.5); /* slate-ish, subtle */
+
+  /* Float animation */
+  animation: floatDown 1600ms ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Inner cut-out triangle to make it hollow */
+.hero-scroll-indicator::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+
+  /* Use your hero background color to "cut out" the inside */
+  border-top: 14px solid #F7F3EA;
+}
+
+/* 実務：中性・基盤色 */
+.tag-work {
+  @apply text-[10px] px-2 py-[2px] rounded-full
+         bg-[#E6E3DC] text-[#6B6B63]
+         tracking-wide;
+}
+
+/* 個人開発：低彩度ブルーグレー */
+.tag-personal {
+  @apply text-[10px] px-2 py-[2px] rounded-full
+         bg-[#E2E7EA] text-[#4F6D8C]
+         tracking-wide;
+}
+
+
