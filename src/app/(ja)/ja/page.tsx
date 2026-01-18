@@ -550,7 +550,7 @@ export default function HomePage() {
               <div className="text-sm">
                 <span className="font-medium text-text-primary">GitHub: </span>
                 <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
-                  github.com/yourusername
+                  github.com/fanzhangdev-droid
                 </a>
               </div>
               <div className="text-sm">
