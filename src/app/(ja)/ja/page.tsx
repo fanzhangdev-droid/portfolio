@@ -543,19 +543,19 @@ export default function HomePage() {
             <div className="space-y-3">
               <div className="text-sm">
                 <span className="font-medium text-text-primary">Email: </span>
-                <a href="mailto:your.email@example.com" className="text-text-secondary hover:text-accent underline">
+                <a href="mailto:fan.zhang.dev@gmail.com" className="text-text-secondary hover:text-accent underline">
                   fan.zhang.dev@gmail.com
                 </a>
               </div>
               <div className="text-sm">
                 <span className="font-medium text-text-primary">GitHub: </span>
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
+                <a href="https://github.com/fanzhangdev-droid" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
                   github.com/fanzhangdev-droid
                 </a>
               </div>
               <div className="text-sm">
                 <span className="font-medium text-text-primary">LinkedIn: </span>
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
+                <a href="https://linkedin.com/in/zhangfandev" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
                   linkedin.com/in/zhangfandev
                 </a>
               </div>
