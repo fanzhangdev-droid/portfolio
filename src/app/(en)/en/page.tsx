@@ -4,6 +4,7 @@ import Nav from '@/components/Nav';
 import ProjectCard from '@/components/ProjectCard';
 import SkillsRadar from '@/components/SkillsRadar';
 import Reveal from '@/components/Reveal';
+import ScrollReveal from '@/components/ScrollReveal';
 import { projects, getLocalizedProject } from '@/content/projects';
 
 const skills = [
@@ -64,7 +65,7 @@ export default function HomePage() {
              {/* Description */}
              <div className="mt-8 space-y-3 text-sm sm:text-base leading-7 text-slate-700 hero-animate hero-delay-3">
                <p className="
-                 whitespace-nowrap
+                 sm:whitespace-nowrap
                  text-[13px] sm:text-sm lg:text-base
                  leading-relaxed
                  text-text-secondary
@@ -107,26 +108,30 @@ export default function HomePage() {
           id="what-i-do"
           className="bg-[#F7F3EA]"
         >
-          <div className="flex flex-col items-center text-center">
-            {/* Title */}
-            <h2 className="text-4xl font-bold mb-12 text-text-primary text-center">
-              What I Do
-            </h2>
+          <ScrollReveal>
+            <div className="flex flex-col items-center text-center">
+              {/* Title */}
+              <h2 className="text-4xl font-bold mb-12 text-text-primary text-center">
+                What I Do
+              </h2>
 
-            {/* Content */}
-            <ul className="max-w-md space-y-4 text-base sm:text-lg text-slate-700">
-              <li>Backend design & implementation for enterprise systems</li>
-              <li>Feature additions & improvements to existing systems</li>
-              <li>API & database design</li>
-            </ul>
-          </div>
+              {/* Content */}
+              <ul className="max-w-md space-y-4 text-base sm:text-lg text-slate-700">
+                <li>Backend design & implementation for enterprise systems</li>
+                <li>Feature additions & improvements to existing systems</li>
+                <li>API & database design</li>
+              </ul>
+            </div>
+          </ScrollReveal>
         </Section>
 
       {/* Projects Section */}
       <Section id="projects" title="Projects" className="section--alt">
-        <p className="-mt-8 mb-10 text-center text-sm sm:text-[15px] leading-relaxed text-slate-600">
-          I prioritize holistic system design, not just individual feature implementation.
-        </p>
+        <ScrollReveal>
+          <p className="-mt-8 mb-10 text-center text-sm sm:text-[15px] leading-relaxed text-slate-600">
+            I prioritize holistic system design, not just individual feature implementation.
+          </p>
+        </ScrollReveal>
 
         {(() => {
           // Featured project should be the Task system (slug is task-system)
@@ -138,20 +143,24 @@ export default function HomePage() {
               {/* Row 1: Featured */}
               {featured && (
                 <div className="grid grid-cols-1 gap-6 lg:gap-7">
-                  <ProjectCard
-                    key={featured.slug}
-                    project={featured}
-                    variant="featured"
-                    className="w-full"
-                    locale="en"
-                  />
+                  <ScrollReveal delayMs={60}>
+                    <ProjectCard
+                      key={featured.slug}
+                      project={featured}
+                      variant="featured"
+                      className="w-full"
+                      locale="en"
+                    />
+                  </ScrollReveal>
                 </div>
               )}
 
               {/* Row 2: Remaining */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
-                {rest.map((project) => (
-                  <ProjectCard key={project.slug} project={project} locale="en" />
+                {rest.map((project, index) => (
+                  <ScrollReveal key={project.slug} delayMs={120 + index * 70}>
+                    <ProjectCard project={project} locale="en" />
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
@@ -165,162 +174,178 @@ export default function HomePage() {
        <Section id="skills" title="Skills">
          <div>
            {/* Caption */}
-           <p className="text-xs text-text-secondary mb-2 text-center tracking-wide">
-             Coverage areas and proficiency levels based on practical experience
-           </p>
-           <p className="text-[11px] text-text-secondary/70 mb-6 text-center">
-             * Values represent capability levels (autonomy) in each domain, not time allocation.
-           </p>
+           <ScrollReveal>
+             <p className="text-xs text-text-secondary mb-2 text-center tracking-wide">
+               Coverage areas and proficiency levels based on practical experience
+             </p>
+             <p className="text-[11px] text-text-secondary/70 mb-6 text-center">
+               * Values represent capability levels (autonomy) in each domain, not time allocation.
+             </p>
+           </ScrollReveal>
 
            {/* Radar */}
-           <SkillsRadar skills={skills} />
+           <ScrollReveal delayMs={60}>
+             <SkillsRadar skills={skills} />
+           </ScrollReveal>
 
            {/* Skill Details */}
            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
 
              {/* 1. System Design */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 System Design
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   Basic / Detailed Design
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Test Design & Execution
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Git / GitHub
-                   <span className="tag-personal">Personal</span>
-                 </li>
-                 <li>
-                   CI/CD
-                   <span className="tag-personal">Personal</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={0}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   System Design
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     Basic / Detailed Design
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Test Design & Execution
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Git / GitHub
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                   <li>
+                     CI/CD
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
              {/* 2. Frontend */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 Frontend
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   HTML / CSS / JavaScript
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   React / TypeScript / Next.js
-                   <span className="tag-personal">Personal</span>
-                 </li>
-                 <li>
-                   Tailwind CSS
-                   <span className="tag-personal">Personal</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={70}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   Frontend
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     HTML / CSS / JavaScript
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     React / TypeScript / Next.js
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                   <li>
+                     Tailwind CSS
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
              {/* 3. Backend */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 Backend
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   Java (Fujitsu Framework)
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Spring Boot
-                   <span className="tag-personal">Personal</span>
-                 </li>
-                 <li>
-                   Python
-                   <span className="tag-personal">Personal</span>
-                 </li>
-                 <li>
-                   REST API Design & Implementation
-                   <span className="tag-personal">Personal</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={140}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   Backend
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     Java (Fujitsu Framework)
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Spring Boot
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                   <li>
+                     Python
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                   <li>
+                     REST API Design & Implementation
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
              {/* 4. Database */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 Database
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   SQL
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Data Modeling
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Oracle Database
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   PostgreSQL
-                   <span className="tag-personal">Personal</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={0}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   Database
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     SQL
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Data Modeling
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Oracle Database
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     PostgreSQL
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
              {/* 5. Batch / Processing */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 Batch (Core Systems)
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   Java Batch
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Shell Script
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Job Scheduling
-                   <span className="tag-work">Work</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={70}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   Batch (Core Systems)
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     Java Batch
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Shell Script
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Job Scheduling
+                     <span className="tag-work">Work</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
              {/* 6. Infrastructure */}
-             <div className="border border-border/40 rounded-lg px-5 py-4">
-               <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
-                 Infrastructure
-               </h3>
-               <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
-                              [&>li]:flex [&>li]:items-center [&>li]:gap-2">
-                 <li>
-                   Linux
-                   <span className="tag-work">Work</span>
-                 </li>
-                 <li>
-                   Docker
-                   <span className="tag-personal">Personal</span>
-                 </li>
-                 <li>
-                   AWS (ECS / RDS / ALB)
-                   <span className="tag-personal">Personal</span>
-                 </li>
-               </ul>
-             </div>
+             <ScrollReveal delayMs={140}>
+               <div className="border border-border/40 rounded-lg px-5 py-4">
+                 <h3 className="text-sm font-semibold text-text-primary pb-2 border-b border-border tracking-wide">
+                   Infrastructure
+                 </h3>
+                 <ul className="mt-4 space-y-1.5 text-xs text-text-secondary leading-relaxed
+                                [&>li]:flex [&>li]:items-center [&>li]:gap-2">
+                   <li>
+                     Linux
+                     <span className="tag-work">Work</span>
+                   </li>
+                   <li>
+                     Docker
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                   <li>
+                     AWS (ECS / RDS / ALB)
+                     <span className="tag-personal">Personal</span>
+                   </li>
+                 </ul>
+               </div>
+             </ScrollReveal>
 
            </div>
          </div>
@@ -526,46 +551,56 @@ export default function HomePage() {
           id="availability"
           className="min-h-screen flex items-center justify-center"
         >
-          <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-4xl font-bold mb-12 text-text-primary text-center">
-              Availability
-            </h2>
-            <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-              Available for freelance projects from April 2026
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="mx-auto max-w-xl text-center">
+              <h2 className="text-4xl font-bold mb-12 text-text-primary text-center">
+                Availability
+              </h2>
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+                Available for freelance projects from April 2026
+              </p>
+            </div>
+          </ScrollReveal>
         </Section>
 
         {/* Contact Section */}
         <Section id="contact" title="Contact">
-          <div className="mx-auto max-w-xl text-center">
-            <p className="text-text-secondary leading-relaxed mb-8">
-              Feel free to reach out for inquiries or consultations through the following channels.
-            </p>
-            <div className="space-y-3">
-              <div className="text-sm">
-                <span className="font-medium text-text-primary">Email: </span>
-                <a href="mailto:your.email@example.com" className="text-text-secondary hover:text-accent underline">
-                  fan.zhang.dev@gmail.com
-                </a>
+          <ScrollReveal>
+            <div className="mx-auto max-w-xl text-center">
+              <p className="text-text-secondary leading-relaxed mb-8">
+                Feel free to reach out for inquiries or consultations through the following channels.
+              </p>
+              <div className="space-y-3">
+                <ScrollReveal delayMs={80}>
+                  <div className="text-sm">
+                    <span className="font-medium text-text-primary">Email: </span>
+                    <a href="mailto:your.email@example.com" className="text-text-secondary hover:text-accent underline">
+                      fan.zhang.dev@gmail.com
+                    </a>
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal delayMs={160}>
+                  <div className="text-sm">
+                    <span className="font-medium text-text-primary">GitHub: </span>
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
+                      github.com/yourusername
+                    </a>
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal delayMs={240}>
+                  <div className="text-sm">
+                    <span className="font-medium text-text-primary">LinkedIn: </span>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
+                      linkedin.com/in/yourusername
+                    </a>
+                  </div>
+                </ScrollReveal>
               </div>
-              <div className="text-sm">
-                <span className="font-medium text-text-primary">GitHub: </span>
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
-                  github.com/yourusername
-                </a>
-              </div>
-              <div className="text-sm">
-                <span className="font-medium text-text-primary">LinkedIn: </span>
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent underline">
-                  linkedin.com/in/yourusername
-                </a>
-              </div>
-            </div>
-            <p className="text-xs text-text-tertiary mt-8">
+              <p className="text-xs text-text-tertiary mt-8">
 
-            </p>
-          </div>
+              </p>
+            </div>
+          </ScrollReveal>
         </Section>
       </div>
 

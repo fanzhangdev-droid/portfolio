@@ -1,34 +1,13 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Zhang Fan - システムエンジニア",
-  description: "通信業界でシステム開発に従事するエンジニアのポートフォリオサイト",
-};
-
+/**
+ * Root layout - pass-through only.
+ * <html> and <body> are rendered by route group layouts:
+ * - (ja)/layout.tsx → <html lang="ja">
+ * - (en)/layout.tsx → <html lang="en">
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }

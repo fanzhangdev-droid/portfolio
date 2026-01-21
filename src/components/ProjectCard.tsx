@@ -40,7 +40,7 @@ export default function ProjectCard({
         group relative block overflow-hidden
         rounded-2xl
         bg-white
-        border border-slate-300/70
+        border border-slate-300/90
         ring-1 ring-black/5
         transition-all duration-300
         shadow-[0_1px_0_rgba(15,23,42,0.04),0_16px_40px_rgba(15,23,42,0.08)]
