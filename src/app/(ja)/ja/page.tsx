@@ -6,6 +6,7 @@ import SkillsRadar from '@/components/SkillsRadar';
 import Reveal from '@/components/Reveal';
 import ScrollReveal from '@/components/ScrollReveal';
 import { projects } from '@/content/projects';
+import Image from "next/image";
 
 const skills = [
   { name: 'Frontend', level: 80, category: 'Development' },
@@ -78,20 +79,26 @@ export default function HomePage() {
              <div className="mt-12 flex justify-center hero-animate hero-delay-3">
                <div
                  className="
-                   w-[220px] sm:w-[260px] md:w-[300px]
-                   aspect-[3/4]
-                   rounded-2xl
+                   relative
+                   w-[200px] sm:w-[240px] md:w-[280px]
+                   aspect-square
+                   rounded-full
                    bg-white/60
                    ring-1 ring-slate-300/40
                    backdrop-blur-sm
-                   flex items-center justify-center
+                   overflow-hidden
                  "
                >
-                 <span className="text-sm text-slate-500 tracking-wide">
-                   Portrait in preparation
-                 </span>
+                 <Image
+                   src="/images/portrait.jpg"
+                   alt="Portrait of Zhang Fan"
+                   fill
+                   className="object-cover"
+                   priority
+                 />
                </div>
              </div>
+
 
            </div>
          </div>
