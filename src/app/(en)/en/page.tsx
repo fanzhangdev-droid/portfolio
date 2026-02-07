@@ -92,7 +92,7 @@ export default function HomePage() {
                               "
                             >
                               <Image
-                                src="/images/portrait.jpg"
+                                src="/images/portrait2.jpg"
                                 alt="Portrait of Zhang Fan"
                                 fill
                                 className="object-cover"
