@@ -8,6 +8,10 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { projects, getLocalizedProject } from '@/content/projects';
 import Image from "next/image";
 
+// ===== Temporary Hide Control =====
+// 業務システム Card 臨時隠す（離職後 true に変更すれば復元可能）
+const SHOW_BUSINESS_SYSTEM_CARD = false;
+
 const skills = [
   { name: 'Frontend', level: 80, category: 'Development' },
   { name: 'Backend', level: 85, category: 'Development' },
@@ -162,11 +166,13 @@ export default function HomePage() {
 
               {/* Row 2: Remaining */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-7">
-                {rest.map((project, index) => (
-                  <ScrollReveal key={project.slug} delayMs={120 + index * 70}>
-                    <ProjectCard project={project} locale="en" />
-                  </ScrollReveal>
-                ))}
+                {rest.map((project, index) =>
+                  (project.slug !== 'business-system' || SHOW_BUSINESS_SYSTEM_CARD) && (
+                    <ScrollReveal key={project.slug} delayMs={120 + index * 70}>
+                      <ProjectCard project={project} locale="en" />
+                    </ScrollReveal>
+                  )
+                )}
               </div>
             </div>
           );
